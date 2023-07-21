@@ -14,18 +14,32 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("Name")]
     [SerializeField] private Image _nameImage = null;
     [SerializeField] private TMP_Text _name = null;
-    [SerializeField] private float _fadeTime = 1.0f;
+    [SerializeField] private float _fadeSpeed = 1.0f;
+
+    [Header("Usage menu")]
+    [SerializeField] private GameObject _usageMenu = null;
+    [SerializeField] private Button _useButton = null;
+
     private Color _nameColor;
     private bool _isHovering = false;
 
-    public void Init(float size)
+    private Inventory _inventory = null;
+    private Item _item;
+
+    public void Init(Inventory inventory, float size)
     {
+        _inventory = inventory;
+
         RectTransform nameTransform = _nameImage.GetComponent<RectTransform>();
         nameTransform.sizeDelta = new Vector2(size, nameTransform.sizeDelta.y);
     }
 
     public void ShowItem(Item item, int amount)
     {
+        _item = item;
+
+        _useButton.interactable = item.IsConsumable;
+
         _image.sprite = item.ItemVisual.Sprite;
         _amount.text = amount.ToString();
         _name.text = item.ItemVisual.Name;
@@ -42,19 +56,22 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         _image.gameObject.SetActive(false);
         _amount.transform.parent.gameObject.SetActive(false);
+
+        ResetColor();
+
+        ChangeUsage(false);
     }
 
     private void Start()
     {
-        _nameColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-        UpdateNameColor();
+        ResetColor();
     }
 
     private void Update()
     {
         if (_image.sprite == null) return;
 
-        float fadeChange = _fadeTime * Time.deltaTime * (_isHovering ? 1.0f : -1.0f);
+        float fadeChange = _fadeSpeed * Time.deltaTime * (_isHovering ? 1.0f : -1.0f);
 
         if(_isHovering)
         {
@@ -78,11 +95,39 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         _isHovering = false;
+
+        ChangeUsage(false);
+    }
+
+    private void ResetColor()
+    {
+        _nameColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        UpdateNameColor();
     }
 
     private void UpdateNameColor()
     {
         _nameImage.color = _nameColor;
         _name.color = _nameColor;
+    }
+
+    public void ChangeUsage(bool enabled)
+    {
+        _usageMenu.SetActive(enabled);
+    }
+
+    public void Use()
+    {
+        _item.OnConsume();
+    }
+
+    public void Delete()
+    {
+        _inventory.DeleteItem(_item, true);
+    }
+
+    public void TryUseItem()
+    {
+        if (_isHovering) Use();
     }
 }

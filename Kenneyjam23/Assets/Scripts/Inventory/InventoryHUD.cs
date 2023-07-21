@@ -29,7 +29,7 @@ public class InventoryHUD : MonoBehaviour
             slotTransform.sizeDelta = new Vector2(itemSize, itemSize);
 
             InventorySlot slot = slotClone.GetComponent<InventorySlot>();
-            slot.Init(itemSize);
+            slot.Init(_inventory, itemSize);
 
             _inventorySlots.Add(slot);
         }
@@ -54,6 +54,14 @@ public class InventoryHUD : MonoBehaviour
         for(int i = curSlotIdx; i < _inventory.MaxAmountOfItems; ++i)
         {
             _inventorySlots[i].Hide();
+        }
+    }
+
+    public void TryUseItem()
+    {
+        foreach(InventorySlot slot in _inventorySlots)
+        {
+            slot.TryUseItem();
         }
     }
 }
