@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7484075027199012846}
   - component: {fileID: 297928757485440117}
+  - component: {fileID: 5019347550515436072}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: {fileID: 11400000, guid: e47ca25e7cdfe2f4889a8e5757cb9b85, type: 2}
   _skinnedMeshRenderer: {fileID: 4260354395687332237}
+--- !u!114 &5019347550515436072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6989611023613116492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafc685753016b74fa2c4bdc7e898705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questsPerNPC: 3
 --- !u!1001 &6382443386676619670
 PrefabInstance:
   m_ObjectHideFlags: 0

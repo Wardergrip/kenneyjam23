@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class NPCType : ScriptableObject
 {
-    public string TypeName;
-    public Material SkinMaterial;
+    public string TypeName = "";
+    public Material SkinMaterial = null;
 }

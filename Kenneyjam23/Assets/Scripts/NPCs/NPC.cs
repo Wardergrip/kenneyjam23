@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] private NPCType _type;
-    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
+    [SerializeField] private NPCType _type = null;
+    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer = null;
 
     // Start is called before the first frame update
     void Start()
