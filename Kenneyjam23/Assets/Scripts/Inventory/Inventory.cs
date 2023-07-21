@@ -5,9 +5,9 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int _amountOfItems = 5;
-    public Dictionary<ItemVisual,int> _items = new Dictionary<ItemVisual,int>();
+    public Dictionary<Item, int> _items = new Dictionary<Item, int>();
 
-    public bool AddItem(ItemVisual item)
+    public bool AddItem(Item item)
     {
         // If the items is already in the inventory, add another one
         if(_items.ContainsKey(item))
@@ -27,12 +27,12 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public bool CheckForItem(ItemVisual item)
+    public bool CheckForItem(Item item)
     {
         return _items.ContainsKey(item);
     }
 
-    public ItemVisual WithdrawItem(ItemVisual item)
+    public Item WithdrawItem(Item item)
     {
         // Return null if the item is not in the inventory
         if (!_items.ContainsKey(item))
@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour
         return item;
     }
 
-    public bool DeleteItem(ItemVisual item, bool deleteStack)
+    public bool DeleteItem(Item item, bool deleteStack)
     {
         // Return false if the item is not in the inventory
         if(!_items.ContainsKey(item))
