@@ -12,12 +12,14 @@ public class Inventory : MonoBehaviour
 
     public UnityEvent InventoryUpdate = new UnityEvent();
 
+    public bool IsFull { get { return Items.Count >= _amountOfItems; } }
+
     public bool AddItem(Item item, int amount = 1)
     {
-        // If the items is already in the inventory, add another one
+        // If the items is already in the inventory, add to this stack
         if(Items.ContainsKey(item))
         {
-            // Don't add an item if the stack is already full
+            // Don't add an item if the stack of this item is already full
             if (Items[item] >= item.MaxStackSize) return false;
 
             Items[item] += amount; 
@@ -26,7 +28,7 @@ public class Inventory : MonoBehaviour
         }
 
         // Don't add an item if the inventory is full
-        if(Items.Count >= _amountOfItems)
+        if(IsFull)
         {
             return false;
         }
@@ -46,7 +48,7 @@ public class Inventory : MonoBehaviour
         return Items[item] >= amount;
     }
 
-    public Item WithdrawItem(Item item)
+    public Item WithdrawItem(Item item, int amount = 1)
     {
         // Return null if the item is not in the inventory
         if (!Items.ContainsKey(item))
@@ -54,13 +56,36 @@ public class Inventory : MonoBehaviour
             return null;
         }
 
-        // Remove one of this item type from the inventory
-        DeleteItem(item, false);
+        // Remove item type from the inventory
+        DeleteItem(item, amount);
 
         return item;
     }
 
-    public bool DeleteItem(Item item, bool deleteStack)
+    public bool DeleteItem(Item item, int amount = 1)
+    {
+        // Return false if the item is not in the inventory
+        if (!Items.ContainsKey(item))
+        {
+            return false;
+        }
+
+        // Return false if the item does not contain enough items of this kind
+        if (Items[item] < amount)
+        {
+            return false;
+        }
+
+        Items[item] -= amount;
+
+        // Remove the item from the inventory if the amount reaches zero
+        if (Items[item] == 0) Items.Remove(item);
+
+        InventoryUpdate.Invoke();
+        return true;
+    }
+
+    public bool DeleteItemStack(Item item)
     {
         // Return false if the item is not in the inventory
         if(!Items.ContainsKey(item))
@@ -68,19 +93,8 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
-        // Delete all the items of this type if deleteStack is true
-        //  otherwise remove only one
-        if(deleteStack)
-        {
-            Items.Remove(item);
-        }
-        else
-        {
-            --Items[item];
-
-            // Delete the item if the amount reaches 0
-            if (--Items[item] == 0) Items.Remove(item);
-        }
+        // Delete all the items of this type
+        Items.Remove(item);
 
         InventoryUpdate.Invoke();
         return true;
