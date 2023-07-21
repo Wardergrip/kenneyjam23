@@ -17,6 +17,9 @@ public class Inventory : MonoBehaviour
         // If the items is already in the inventory, add another one
         if(Items.ContainsKey(item))
         {
+            // Don't add an item if the stack is already full
+            if (Items[item] >= item.MaxStackSize) return false;
+
             Items[item] += amount; 
             InventoryUpdate.Invoke();
             return true;
@@ -34,9 +37,13 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public bool CheckForItem(Item item)
+    public bool CheckForItem(Item item, int amount = 1)
     {
-        return Items.ContainsKey(item);
+        // Return false if the item is not in the inventory
+        if (!Items.ContainsKey(item)) return false;
+
+        // Compare the amounts
+        return Items[item] >= amount;
     }
 
     public Item WithdrawItem(Item item)
