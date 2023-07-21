@@ -22,13 +22,16 @@ public class InventoryHUD : MonoBehaviour
 
         for(int i = 0; i < maxItems; ++i)
         {
-            GameObject itemSlot = Instantiate(_inventorySlot, transform);
+            GameObject slotClone = Instantiate(_inventorySlot, transform);
 
-            RectTransform slotTransform = itemSlot.GetComponent<RectTransform>();
+            RectTransform slotTransform = slotClone.GetComponent<RectTransform>();
             slotTransform.localPosition = Vector3.right * (startPos + (itemSize + _distanceBetweenSlots) * i);
             slotTransform.sizeDelta = new Vector2(itemSize, itemSize);
 
-            _inventorySlots.Add(itemSlot.GetComponent<InventorySlot>());
+            InventorySlot slot = slotClone.GetComponent<InventorySlot>();
+            slot.Init(itemSize);
+
+            _inventorySlots.Add(slot);
         }
 
         _inventory.InventoryUpdate.AddListener(() => UpdateInventory());

@@ -554,6 +554,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 2689048391942714657}
   _amount: {fileID: 619360255238063010}
+  _nameImage: {fileID: 1123890165285036449}
+  _name: {fileID: 1289162115224028445}
+  _fadeTime: 5
 --- !u!1 &8928980961732045077
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1395693616841066837
 RectTransform:
   m_ObjectHideFlags: 0
