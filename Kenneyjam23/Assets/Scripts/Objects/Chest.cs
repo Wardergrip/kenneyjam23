@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    public static List<Chest> Chests { get; private set; } = new();
+
     [SerializeField] private Item _item = null;
     [SerializeField] private GameObject _failMessage = null;
     [SerializeField] private Transform _failMessageSocket = null;
+
+    private void OnEnable() => Chests.Add(this);
+    private void OnDisable() => Chests.Remove(this);
 
     public void Interact(Inventory inventory)
     {
@@ -24,5 +29,16 @@ public class Chest : MonoBehaviour
 
         // Disable the chest by setting the item to null
         _item = null;
+    }
+
+    public void Restock(Item item)
+    {
+        if (item == null)
+        {
+            Debug.LogWarning($"Item that is passed to {gameObject.name} is null");
+            return;
+        }
+        GetComponent<Animator>().SetTrigger("CloseChest");
+        _item = item;
     }
 }
