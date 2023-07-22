@@ -8,10 +8,14 @@ using UnityEngine.AI;
 public class BasicEnemy : MonoBehaviour
 {
     [SerializeField] private Transform _target;
-    [SerializeField] private float _visionRange = 5f;
+    [SerializeField] private float _visionRange = 7.5f;
+    [SerializeField] private float _damageRange = 3f;
+    [SerializeField] private GameObject _damageObject;
+    [SerializeField] private float _maxAttackCooldown = 1f;
     private NavMeshAgent _navMeshAgent;
 
     private IEnemyState _state;
+    private float _attackCooldown;
     private EnemyWanderState _enemyWanderState;
     private EnemySeekState _enemySeekState;
 
@@ -36,6 +40,7 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _attackCooldown -= Time.deltaTime;
         if ((_target.position - transform.position).magnitude <= _visionRange)
         {
             if (_state != _enemySeekState)
@@ -53,5 +58,16 @@ public class BasicEnemy : MonoBehaviour
             _state = _enemyWanderState;
         }
         _state.UpdateState();
+
+        if (_attackCooldown <= 0f && (_target.position - transform.position).magnitude <= _damageRange)
+        {
+            _attackCooldown = _maxAttackCooldown;
+            Instantiate(_damageObject, transform.position, Quaternion.identity);
+        }
+    }
+
+    public void Died()
+    {
+        Destroy(gameObject);
     }
 }
