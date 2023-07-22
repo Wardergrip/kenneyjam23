@@ -98,7 +98,7 @@ public class DialogHandler : MonoBehaviour
                 DialogBlock block = _currentDialogBlock.Choices[choiceIdx];
 
                 // Cancel the button click when the predicate in the dialog returns false
-                if (!block.Predicate.Validate()) return;
+                if (block.Predicate != null && !block.Predicate.Validate()) return;
 
                 // Apply the new dialog block
                 _currentDialogBlock = _currentDialogBlock.Choices[choiceIdx];
