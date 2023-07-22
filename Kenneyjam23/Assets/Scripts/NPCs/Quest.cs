@@ -14,17 +14,19 @@ public class Quest : ScriptableObject
 
     public NPCType Type = null;
 
+    public bool CanCompleteQuest(Inventory inventory)
+    {
+        return inventory.CheckForItem(ItemRequired, AmountRequired);
+    }
+
     public bool TryCompleteQuest(Inventory inventory)
     {
         // Check if the player has the required items
-        if (!inventory.CheckForItem(ItemRequired, AmountRequired))
+        if (!CanCompleteQuest(inventory))
             return false;
 
         // If the player has the item remove them from the inventory
-        for (int i = 0; i < AmountRequired; ++i)
-        {
-            inventory.WithdrawItem(ItemRequired);
-        }
+        inventory.WithdrawItem(ItemRequired, AmountRequired);
 
         // Try to collect the quest's rewards
         TryCollectRewards(inventory);
@@ -35,7 +37,7 @@ public class Quest : ScriptableObject
     public void TryCollectRewards(Inventory inventory)
     {
         // Check if the player has room in their inventory
-        if (true) // TODO: implement actual check
+        if (!inventory.IsFull)
         {
             // If so, add rewarded items
             for (int i = 0; i < AmountRewarded; ++i)

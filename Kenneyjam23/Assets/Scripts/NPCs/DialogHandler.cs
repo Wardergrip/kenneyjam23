@@ -18,6 +18,15 @@ public class DialogHandler : MonoBehaviour
     [Header("Dialog")]
     [SerializeField] private DialogBlock _rootDialogBlock;
     private DialogBlock _currentDialogBlock;
+    public DialogBlock CurrentDialogBlock
+    {
+        private get { return _currentDialogBlock; }
+        set
+        {
+            _currentDialogBlock = value;
+            _currentDialogBlock.OnActivate.Invoke();
+        }
+    }
 
     [Header("UI")]
     [SerializeField] private float _scaleTime = 1f;
@@ -36,13 +45,6 @@ public class DialogHandler : MonoBehaviour
 
         // Cache the original scale of the dialog window
         _originalPanelScale = _panelTransform.localScale;
-
-        // Store the first dialog
-        _currentDialogBlock = _rootDialogBlock;
-        _currentDialogBlock.OnActivate.Invoke();
-
-        // Start opening the dialog window
-        OpenDialog();
 
         // Make the dialog window dissapear
         _panelTransform.localScale = Vector3.zero;
@@ -88,7 +90,7 @@ public class DialogHandler : MonoBehaviour
             _respondButtons.Add(button.GetComponent<Button>());
             // Set position
             RectTransform buttonTransform = button.GetComponent<RectTransform>();
-            buttonTransform.position = _buttonSocket.position - Vector3.up * _ySpaceBetweenButtons * i;
+            buttonTransform.localPosition = _buttonSocket.localPosition - Vector3.up * _ySpaceBetweenButtons * i;
 
             // Define action for onClick
             int choiceIdx = i;
