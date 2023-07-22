@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
@@ -120,8 +121,10 @@ public class Gun : MonoBehaviour
 
         _shootTimer = TimeBetweenShots;
         Instantiate(_projectilePrefab, _gunOutput.position, _gunOutput.rotation);
+
         --_currentAmmo;
         ShotFiredEvent?.Invoke(_gunOutput);
+
         return true;
     }
 }

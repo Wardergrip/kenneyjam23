@@ -49,13 +49,10 @@ public class CameraFollow : MonoBehaviour
         
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed * Time.deltaTime);
 
-        // Calculate the direction from the camera to the player
         Vector3 directionToPlayer = _playerTransform.position - transform.position;
 
-        // Calculate the target y-rotation angle in degrees
         float targetYRot = Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg;
 
-        // Smoothly interpolate between the current y-rotation and the target y-rotation
         float yRot = Mathf.LerpAngle(transform.localEulerAngles.y, targetYRot, _smoothSpeed * Time.fixedDeltaTime);
 
         transform.localEulerAngles = new Vector3(_rotation, yRot, 0);

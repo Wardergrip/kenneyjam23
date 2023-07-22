@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    public GameObject Cube;
-
     [SerializeField] private Animator _animator = null;
 
     private CharacterController _cc = null;
@@ -35,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public float CameraRotation { get { return _cameraRotation; } }
 
-    public UnityEvent WeaponChange;
+    public UnityEvent<bool> WeaponChange;
 
     /// <summary>
     /// Code for moving the player based on input from the keyboard
@@ -60,15 +58,8 @@ public class PlayerController : MonoBehaviour
         _gravity = Physics.gravity.y;
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
     private void LateUpdate()
     {
-        // Assuming _inputVec represents the input direction from the player (normalized).
-
         Vector3 movementDir = Camera.main.transform.TransformDirection(_inputVec);
         movementDir = new Vector3(movementDir.x, 0f, movementDir.z).normalized;
 
@@ -93,10 +84,11 @@ public class PlayerController : MonoBehaviour
     {
         _hasGun = context.ReadValueAsButton();
 
-        //if(context.performed || context.canceled)
-        //{
-        //}
-        WeaponChange.Invoke();
+        if(context.performed || context.canceled)
+        {
+            WeaponChange.Invoke(_hasGun);
+            Debug.Log(_hasGun);
+        }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -131,8 +123,6 @@ public class PlayerController : MonoBehaviour
             _cameraRotation += _cameraRotDir * Time.deltaTime * _cameraRotSpeed;
 
             _cameraRotation = (_cameraRotation + 360) % 360;
-
-            Debug.Log(_cameraRotation);
         }
     }
 }
