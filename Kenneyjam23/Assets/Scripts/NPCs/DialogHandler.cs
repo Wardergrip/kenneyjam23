@@ -39,6 +39,7 @@ public class DialogHandler : MonoBehaviour
 
         // Store the first dialog
         _currentDialogBlock = _rootDialogBlock;
+        _currentDialogBlock.OnActivate.Invoke();
 
         // Start opening the dialog window
         OpenDialog();
@@ -93,7 +94,16 @@ public class DialogHandler : MonoBehaviour
             int choiceIdx = i;
             UnityAction action = () => 
             {
+                // Retrieve the current dialog block
+                DialogBlock block = _currentDialogBlock.Choices[choiceIdx];
+
+                // Cancel the button click when the predicate in the dialog returns false
+                if (!block.Predicate.Validate()) return;
+
+                // Apply the new dialog block
                 _currentDialogBlock = _currentDialogBlock.Choices[choiceIdx];
+                _currentDialogBlock.OnActivate.Invoke();
+
                 UpdatePanel();
             };
             button.GetComponent<Button>().onClick.AddListener(action);
