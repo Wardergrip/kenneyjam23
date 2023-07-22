@@ -241,6 +241,152 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &1310164178
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1168054011135161109, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017007660891801658, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: _cameraRotSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: a42fd0f1-1d68-4874-ae73-04355af9afc8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: PlayerControls/Rotate[/Keyboard/q,/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1528178238}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977233265282149622, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1, type: 3}
+--- !u!114 &1528178238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7017007660891801658, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1310164178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3feefb8e33e584f47aee7adda72f3e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1528178239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7296550772586763701, guid: 4ea1fb556cecbc04896f1aa40ef8e5f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1310164178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1923959903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,6 +456,8 @@ GameObject:
   - component: {fileID: 2089374455}
   - component: {fileID: 2089374454}
   - component: {fileID: 2089374453}
+  - component: {fileID: 2089374457}
+  - component: {fileID: 2089374456}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -391,3 +539,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2089374456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089374452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a7d95c59701a946b398b4965a8f260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 1528178239}
+  _offset: {x: 0, y: 15, z: -15}
+  _rotation: 45
+  _smoothSpeed: 1
+--- !u!114 &2089374457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089374452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0

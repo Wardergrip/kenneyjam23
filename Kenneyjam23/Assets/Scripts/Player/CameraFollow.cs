@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
 
-    [SerializeField] private GameObject _player = null;
+    [SerializeField] private Transform _playerTransform = null;
 
     [SerializeField] private Vector3 _offset = Vector3.zero;
 
@@ -13,18 +13,15 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] float _smoothSpeed = 0.125f;
 
-    private Transform _playerTransform = null;
+    private PlayerController _playerController;
 
     void Start()
     {
-        if( _player != null )
-        {
-            _playerTransform = _player.GetComponent<Transform>();
+        transform.position = _playerTransform.position + _offset;
 
-            transform.position = _playerTransform.position + _offset;
+        transform.localEulerAngles = new Vector3(_rotation, 0, 0);
 
-            transform.localEulerAngles = new Vector3(_rotation, 0, 0);
-        }
+        _playerController = PlayerController.Instance;
     }
 
     void LateUpdate()
@@ -35,13 +32,28 @@ public class CameraFollow : MonoBehaviour
             return;
         }
 
-        Vector3 desiredPosition = _playerTransform.position + _offset;
+        float angleRad = Mathf.Deg2Rad * (_playerController.CameraRotation + 180);
 
+        float offsetX = Mathf.Sin(angleRad) * 15;
+        float offsetZ = Mathf.Cos(angleRad) * 15;
+
+        _offset = new Vector3(offsetX, _offset.y, offsetZ);
+
+        Vector3 desiredPosition = _playerTransform.position + _offset;
+        
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed * Time.deltaTime);
 
-        //this is to change rotation on runtime for debug puproses
-        transform.localEulerAngles = new Vector3(_rotation, 0, 0);
+        // Calculate the direction from the camera to the player
+        Vector3 directionToPlayer = _playerTransform.position - transform.position;
 
+        // Calculate the target y-rotation angle in degrees
+        float targetYRot = Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg;
+
+        // Smoothly interpolate between the current y-rotation and the target y-rotation
+        float yRot = Mathf.LerpAngle(transform.localEulerAngles.y, targetYRot, _smoothSpeed * Time.fixedDeltaTime);
+
+        transform.localEulerAngles = new Vector3(_rotation, yRot, 0);
+        
         transform.position = smoothedPosition;
     }
 }
