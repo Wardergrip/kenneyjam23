@@ -12,6 +12,8 @@ public class Quest : ScriptableObject
     public Item ItemRewarded = null;
     [Min(1)] public int AmountRewarded = 1;
 
+    public NPCType Type = null;
+
     public bool IsCompleted { get; private set; } = false;
 
     public bool TryCompleteQuest(Inventory inventory)
@@ -20,7 +22,7 @@ public class Quest : ScriptableObject
         if (IsCompleted) return false;
 
         // Check if the player has the required items
-        if (!inventory.CheckForItem(ItemRequired)) // TODO: Check if we have the required amount
+        if (!inventory.CheckForItem(ItemRequired, AmountRequired))
             return false;
 
         // If the player has the item remove them from the inventory

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    [SerializeField, Min(1)] private int _questsPerNPC = 1;
-
-    private List<Quest> _quests = new List<Quest>();
+    private List<Quest> _quests = null;
 
     public int CurrentQuestIdx { get; private set; } = 0;
 
     public bool IsQuestlineCompleted { get; private set; } = false;
+
+    public void Initialize(List<Quest> quests)
+    {
+        _quests = quests;
+    }
 
     public void HandleQuest(Inventory inventory, int questIdx)
     {
@@ -33,7 +36,7 @@ public class QuestManager : MonoBehaviour
         if (_quests[questIdx].TryCompleteQuest(inventory))
         {
             // If successful, unlock the next quest
-            if (++CurrentQuestIdx == _questsPerNPC)
+            if (++CurrentQuestIdx == _quests.Count)
             {
                 // If this was the last quest, mark questline as completed
                 IsQuestlineCompleted = true;

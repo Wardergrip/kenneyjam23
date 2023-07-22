@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e760f0046b2d78498ce39e4b0f3b595, type: 3}
-  m_Name: TestQuest
+  m_Name: TestSmith 2
   m_EditorClassIdentifier: 
-  ItemRequired: {fileID: 0}
+  ItemRequired: {fileID: 11400000, guid: 514ef8c4137bba745a1f82233e5d7926, type: 2}
   AmountRequired: 1
-  ItemRewarded: {fileID: 0}
-  AmountRewarded: 1
+  ItemRewarded: {fileID: 11400000, guid: 0252e9739aa7bbd48881f0c2ec551355, type: 2}
+  AmountRewarded: 2
+  Type: {fileID: 11400000, guid: 0cb0166dc35a4ce4390b0fc2bb68fdc6, type: 2}

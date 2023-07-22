@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: {fileID: 11400000, guid: e47ca25e7cdfe2f4889a8e5757cb9b85, type: 2}
+  _questManager: {fileID: 5019347550515436072}
   _skinnedMeshRenderer: {fileID: 4260354395687332237}
 --- !u!114 &5019347550515436072
 MonoBehaviour:

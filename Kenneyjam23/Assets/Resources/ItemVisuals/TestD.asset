@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 489825ef2c9258044af98950389f725c, type: 3}
-  m_Name: TestRequirement
+  m_Script: {fileID: 11500000, guid: cedd6962ec74d6e438f99258f855bc7d, type: 3}
+  m_Name: TestD
   m_EditorClassIdentifier: 
-  ItemVisual: {fileID: 0}
-  MaxStackSize: 10
-  IsConsumable: 1
+  Sprite: {fileID: 0}
+  Name: D
