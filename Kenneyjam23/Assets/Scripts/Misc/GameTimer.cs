@@ -7,12 +7,19 @@ public class GameTimer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMeshProUGUI;
 
-    public static bool IsPaused { get; set; } = false;
+    private static bool IsPaused { get; set; } = false;
+
+    public static void Pause() => IsPaused = true;
+    public static void Unpause() => IsPaused = false;
 
     private float _time = 0;
     private int _seconds = 0;
     private int _minutes = 0;
     private int _hours = 0; 
+
+    public int Seconds { get { return _seconds; } }
+    public int Minutes { get { return _minutes; } }
+    public int Hours { get { return _hours; } }
 
 
     // Update is called once per frame
@@ -48,8 +55,12 @@ public class GameTimer : MonoBehaviour
     {
         textMeshProUGUI.text = 
             string.Concat(
-                _hours.ToString(), _minutes > 9 ? "" : "0", 
-                _minutes.ToString(), _seconds > 9 ? "" : "0", 
+                _hours.ToString(), 
+                ":",
+                _minutes > 9 ? "" : "0", 
+                _minutes.ToString(), 
+                ":",
+                _seconds > 9 ? "" : "0",
                 _seconds.ToString()
                 );
     }
