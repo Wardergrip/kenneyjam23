@@ -25,30 +25,45 @@ public class DialogHandler : MonoBehaviour
     private Vector3 _originalPanelScale;
     [SerializeField] private TextMeshProUGUI _npcDialogTextBlock;
     [Tooltip("It is assumed the child has a TextMeshProUGUI component.")]
-    [SerializeField] private Button _dialogRespondPrefab;
+    [SerializeField] private RectTransform _buttonSocket;
+    [SerializeField] private GameObject _dialogRespondPrefab;
     [SerializeField] private float _ySpaceBetweenButtons = 10f;
-    private List<Button> _respondButtons;
+    private List<Button> _respondButtons = new List<Button>();
 
     void Start()
     {
-        _dialogRespondPrefab.gameObject.SetActive(false);
         Debug.Assert(_rootDialogBlock, $"Root dialog block is null.");
+
+        // Cache the original scale of the dialog window
         _originalPanelScale = _panelTransform.localScale;
+
+        // Store the first dialog
         _currentDialogBlock = _rootDialogBlock;
+
+        // Start opening the dialog window
+        OpenDialog();
+
+        // Make the dialog window dissapear
+        _panelTransform.localScale = Vector3.zero;
     }
 
     public void OpenDialog()
     {
         StopAllCoroutines();
+
+        // Update the text and buttons witht he current dialog
         UpdatePanel();
 
-        StartCoroutine(Scale_Coroutine(ScaleResult.Show,_scaleTime));
+        // Start a coroutine that will scale the dialog to the full scale
+        StartCoroutine(ScaleCoroutine(ScaleResult.Show,_scaleTime));
     }
 
     public void CloseDialog()
     {
         StopAllCoroutines();
-        StartCoroutine(Scale_Coroutine(ScaleResult.Hide,_scaleTime));
+
+        // Start a coroutine that will scale the dialog to 0
+        StartCoroutine(ScaleCoroutine(ScaleResult.Hide,_scaleTime));
     }
 
     private void UpdatePanel()
@@ -64,56 +79,50 @@ public class DialogHandler : MonoBehaviour
             return;
         }
 
-        // Set true so that if we copy it it is copied as active
-        _dialogRespondPrefab.gameObject.SetActive(true);
         // Loop over all choices
         for (int i = 0; i < _currentDialogBlock.Choices.Count; ++i)
         {
             // Add a new instance of it to the buttons list
-            _respondButtons.Add(Instantiate(_dialogRespondPrefab.gameObject).GetComponent<Button>());
-            var button = _respondButtons.Last();
+            var button = Instantiate(_dialogRespondPrefab, _panelTransform);
+            _respondButtons.Add(button.GetComponent<Button>());
             // Set position
-            Vector3 pos = button.transform.position;
-            pos.y += _ySpaceBetweenButtons * i;
-            button.transform.position = pos;
+            RectTransform buttonTransform = button.GetComponent<RectTransform>();
+            buttonTransform.position = _buttonSocket.position - Vector3.up * _ySpaceBetweenButtons * i;
 
             // Define action for onClick
+            int choiceIdx = i;
             UnityAction action = () => 
             {
-                _currentDialogBlock = _currentDialogBlock.Choices[i];
+                _currentDialogBlock = _currentDialogBlock.Choices[choiceIdx];
                 UpdatePanel();
             };
-            button.onClick.AddListener(action);
+            button.GetComponent<Button>().onClick.AddListener(action);
 
             // Set text
             button.GetComponentInChildren<TextMeshProUGUI>().text = _currentDialogBlock.Choices[i].ChoiceText;
         }
-        // Disable the thing we coppying from
-        _dialogRespondPrefab.gameObject.SetActive(false);
 
         // Set dialog text block
         _npcDialogTextBlock.text = _currentDialogBlock.NpcSpeech;
     }
 
-    private IEnumerator Scale_Coroutine(ScaleResult scaleResult, float fadeDuration = 1f)
+    private IEnumerator ScaleCoroutine(ScaleResult scaleResult, float fadeDuration = 1f)
     {
         float elapsedTime = 0f;
 
         // If the result is show, we go from zero --> original. If not, we do the opposite.
-        Func<float, int> scalingFunc = scaleResult == ScaleResult.Show 
+        Action<float> scalingFunc = scaleResult == ScaleResult.Show 
             ? (float t) => 
         {
             _panelTransform.localScale = Vector3.Lerp(Vector3.zero, _originalPanelScale, t);
-            return 0; 
         } 
             : (float t) =>
         {
             _panelTransform.localScale = Vector3.Lerp(_originalPanelScale, Vector3.zero, t);
-            return 0;
         }
         ;
 
-        // Main loop
+        // Main loop : scale the dialog depending on the set lambda
         while (elapsedTime < fadeDuration)
         {
             float t = EaseInOut(elapsedTime / fadeDuration);
@@ -124,6 +133,7 @@ public class DialogHandler : MonoBehaviour
             yield return null;
         }
 
+        // Avoid scaling too much (less then 0 or above original size)
         switch (scaleResult)
         {
             case ScaleResult.Hide:
@@ -142,6 +152,9 @@ public class DialogHandler : MonoBehaviour
 
     private float EaseInOut(float t)
     {
+        // Formulas used:
+        //   4x^3             before time has reached 0.5
+        //   (x-1)*(2x-2)^2+1 after time has reached 0.5
         return t < 0.5f ? 4f * t * t * t : (t - 1f) * (2f * t - 2f) * (2f * t - 2f) + 1f;
     }
 }
