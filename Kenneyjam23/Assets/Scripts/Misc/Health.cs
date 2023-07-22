@@ -6,8 +6,13 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
+    public int MaxHealth
+    {
+        get { return _maxHealth; }
+    }
+
     private int _currentHealth;
-    private int CurrentHealth
+    public int CurrentHealth
     {
         get { return _currentHealth; }
         set
