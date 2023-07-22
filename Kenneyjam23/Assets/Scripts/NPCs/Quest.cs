@@ -14,13 +14,8 @@ public class Quest : ScriptableObject
 
     public NPCType Type = null;
 
-    public bool IsCompleted { get; private set; } = false;
-
     public bool TryCompleteQuest(Inventory inventory)
     {
-        // Ignore if the quest was already completed
-        if (IsCompleted) return false;
-
         // Check if the player has the required items
         if (!inventory.CheckForItem(ItemRequired, AmountRequired))
             return false;
@@ -33,9 +28,6 @@ public class Quest : ScriptableObject
 
         // Try to collect the quest's rewards
         TryCollectRewards(inventory);
-
-        // Complete current quest
-        IsCompleted = true;
 
         return true;
     }

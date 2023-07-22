@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Item> _chestItems = new List<Item>();
 
-    private List<Item> _availableItems = null;
+    private List<Item> _availableItems = new List<Item>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     void GenerateNPCQuests()
     {
         // Set initial available items
-        _availableItems = _chestItems;
+        _availableItems.AddRange(_chestItems);
 
         // Get all quest managers in the scene
         List<NPC> npcs = FindObjectsOfType<NPC>().ToList();
@@ -66,11 +66,5 @@ public class GameManager : MonoBehaviour
         {
             npcs[npcIdx].GetQuestManager().Initialize(npcQuests[npcIdx]);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

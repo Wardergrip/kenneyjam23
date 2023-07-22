@@ -18,7 +18,7 @@ public class QuestManager : MonoBehaviour
     public void HandleQuest(Inventory inventory, int questIdx)
     {
         // Check if the selected quest was already completed
-        if (_quests[questIdx].IsCompleted)
+        if (questIdx < CurrentQuestIdx)
         {
             // If so, try to claim the rewards
             TryCollectRewards(inventory, questIdx);

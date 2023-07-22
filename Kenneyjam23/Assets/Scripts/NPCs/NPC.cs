@@ -18,10 +18,4 @@ public class NPC : MonoBehaviour
         // Set NPC material based on type
         _skinnedMeshRenderer.material = _type.SkinMaterial;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
