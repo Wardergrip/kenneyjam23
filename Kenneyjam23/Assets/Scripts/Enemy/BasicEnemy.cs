@@ -36,10 +36,8 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log((_target.position - transform.position).magnitude <= _visionRange);
         if ((_target.position - transform.position).magnitude <= _visionRange)
         {
-            Debug.LogWarning("SEEK");
             if (_state != _enemySeekState)
             {
                 _enemySeekState.EnterState(_navMeshAgent);
@@ -48,7 +46,6 @@ public class BasicEnemy : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("WANDER");
             if (_state != _enemyWanderState)
             {
                 _enemyWanderState.EnterState(_navMeshAgent);
