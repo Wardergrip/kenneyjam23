@@ -62,18 +62,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Assuming _inputVec represents the input direction from the player (normalized).
-
-        Vector3 movementDir = Camera.main.transform.TransformDirection(_inputVec);
-        movementDir = new Vector3(movementDir.x, 0f, movementDir.z).normalized; 
-
-        Vector3 movementVec = new Vector3(movementDir.x * _speed, _gravity, movementDir.z * _speed);
-
-        _cc?.Move(movementVec * Time.fixedDeltaTime);
+        
     }
 
     private void LateUpdate()
     {
+        // Assuming _inputVec represents the input direction from the player (normalized).
+
+        Vector3 movementDir = Camera.main.transform.TransformDirection(_inputVec);
+        movementDir = new Vector3(movementDir.x, 0f, movementDir.z).normalized;
+
+        Vector3 movementVec = new Vector3(movementDir.x * _speed, _gravity, movementDir.z * _speed);
+
+        _cc?.Move(movementVec * Time.deltaTime);
+
         RotatePlayer();
 
         RotateCamera();
