@@ -123,7 +123,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void Delete()
     {
-        _inventory.DeleteItem(_item, true);
+        _inventory.DeleteItem(_item);
     }
 
     public void TryUseItem()
