@@ -552,9 +552,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 1528178239}
-  _offset: {x: 0, y: 15, z: -15}
-  _rotation: 45
-  _smoothSpeed: 1
+  _height: 15
+  _radius: 15
+  _rotation: 40
+  _smoothSpeed: 10
 --- !u!114 &2089374457
 MonoBehaviour:
   m_ObjectHideFlags: 0

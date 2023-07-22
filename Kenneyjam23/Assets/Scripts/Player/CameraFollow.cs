@@ -7,16 +7,22 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] private Transform _playerTransform = null;
 
-    [SerializeField] private Vector3 _offset = Vector3.zero;
+    [SerializeField] private float _height = 15f;
 
-    [SerializeField] private float _rotation = 0f;
+    [SerializeField] private float _radius = 15f;
+
+    [SerializeField] private float _rotation = 40f;
 
     [SerializeField] float _smoothSpeed = 0.125f;
+
+    private Vector3 _offset = Vector3.zero;
 
     private PlayerController _playerController;
 
     void Start()
     {
+        _offset = new Vector3(0, _height, _radius);
+
         transform.position = _playerTransform.position + _offset;
 
         transform.localEulerAngles = new Vector3(_rotation, 0, 0);
@@ -34,10 +40,10 @@ public class CameraFollow : MonoBehaviour
 
         float angleRad = Mathf.Deg2Rad * (_playerController.CameraRotation + 180);
 
-        float offsetX = Mathf.Sin(angleRad) * 15;
-        float offsetZ = Mathf.Cos(angleRad) * 15;
+        float offsetX = Mathf.Sin(angleRad) * _radius;
+        float offsetZ = Mathf.Cos(angleRad) * _radius;
 
-        _offset = new Vector3(offsetX, _offset.y, offsetZ);
+        _offset = new Vector3(offsetX, _height, offsetZ);
 
         Vector3 desiredPosition = _playerTransform.position + _offset;
         
