@@ -49,7 +49,10 @@ public class WeaponBehaviour : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if(context.performed && _canShoot)
+        // Don't shoot a bullet if the player interacted with something in the world
+        if (GetComponent<ClickInteraction>().OnClick()) return;
+
+        if (context.performed && _canShoot)
         {
             _currentGun.TryShoot();
         }

@@ -7,7 +7,7 @@ public class GameTimer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMeshProUGUI;
 
-    private static bool IsPaused { get; set; } = false;
+    public static bool IsPaused { get; private set; } = false;
 
     public static void Pause() => IsPaused = true;
     public static void Unpause() => IsPaused = false;
@@ -20,9 +20,13 @@ public class GameTimer : MonoBehaviour
     public int Seconds { get { return _seconds; } }
     public int Minutes { get { return _minutes; } }
     public int Hours { get { return _hours; } }
+    public float TotalTime { get { return _time; } }
 
-
-    // Update is called once per frame
+    void Start()
+    {
+        IsPaused = false;
+    }
+    
     void Update()
     {
         if (IsPaused) return;
