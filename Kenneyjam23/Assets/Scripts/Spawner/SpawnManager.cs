@@ -74,8 +74,10 @@ public class SpawnManager : MonoBehaviour
             if (number > randomNumber)
             {
                 var go = Instantiate(enemy.Mob, position, Quaternion.identity);
+
+                //Increase health overtime
                 go.GetComponent<Health>().SetHealth(enemy.Health + Mathf.FloorToInt(enemy.IncreaseHealth * _gameTime));
-                
+
                 break;
             }
         }
