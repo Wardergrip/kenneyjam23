@@ -21,7 +21,7 @@ public class Chest : MonoBehaviour
         {
             // Spawn a message that the player's inventory is full
             Instantiate(_failMessage, _failMessageSocket.position, Quaternion.identity, null);
-            return false;
+            return true;
         }
 
         // Play the open animation
