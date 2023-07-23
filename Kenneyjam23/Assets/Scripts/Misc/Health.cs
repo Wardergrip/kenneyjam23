@@ -62,6 +62,7 @@ public class Health : MonoBehaviour
     {
         if (IsDead) return false;
         CurrentHealth += amount;
+        if (CurrentHealth > _maxHealth) CurrentHealth = _maxHealth;
         OnHealReceivedEvent?.Invoke(this);
         return true;
     }
