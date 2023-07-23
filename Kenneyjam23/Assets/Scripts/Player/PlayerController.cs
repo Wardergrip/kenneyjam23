@@ -58,11 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 movementDir = Camera.main.transform.forward;
-        movementDir.y = 0.0f;
-        movementDir.Normalize();
-
-        Vector3 movementVec = movementDir * _speed * _inputVec.y + Vector3.up * _gravity;
+        Vector3 movementVec = transform.forward * _inputVec.y * _speed + Vector3.up * _gravity;
 
         _cc?.Move(movementVec * Time.deltaTime);
 
@@ -96,46 +92,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnRotate(InputAction.CallbackContext context)
-    {
-        //_cameraRotDir = context.ReadValue<float>();
-
-        _canRotate = context.performed;
-    }
-
     private void RotatePlayer()
     {
-        Vector3 direction = Camera.main.transform.forward;
-        direction.y = 0.0f;
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction.normalized, Vector3.up), _rotationLerpSpeed * Time.deltaTime);
+        if (Physics.Raycast(ray, out hit) == false) return;
+
+        Vector3 worldMousePos = hit.point;
+
+        Vector2 dir = new Vector2(worldMousePos.x - transform.position.x, worldMousePos.z - transform.position.z);
+
+        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+
+        Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
     private void RotateCamera()
     {
-        //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        //RaycastHit hit;
-
-        //_canRotate = false;
-        //_cameraRotDir = 0;
-
-        //if (Physics.Raycast(ray, out hit))
-        //{
-        //    Vector3 worldMousePos = hit.point;
-
-        //    Vector3 dir = new Vector3(worldMousePos.x - transform.position.x, 0, worldMousePos.z - transform.position.z);
-
-        //    float angle = Vector3.SignedAngle(transform.forward, dir, Vector3.up);
-
-        //    Debug.Log(angle);
-
-        //    if (Mathf.Abs(angle) > _mouseRange)
-        //    {
-        //        _cameraRotDir = angle / Mathf.Abs(angle);
-        //        _canRotate = true;
-        //    }
-        //}
-
         if (_canRotate)
         {
             _cameraRotation += _cameraRotDir * Time.deltaTime * _cameraRotSpeed;
