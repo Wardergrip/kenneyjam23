@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e760f0046b2d78498ce39e4b0f3b595, type: 3}
+  m_Name: VillagerQuest
+  m_EditorClassIdentifier: 
+  ItemRequired: {fileID: 11400000, guid: 1d4861e594a2f8445ae68d47b5554886, type: 2}
+  AmountRequired: 1
+  ItemRewarded: {fileID: 11400000, guid: 0cb4bbe17b2e7dc44a41a29a68b97281, type: 2}
+  AmountRewarded: 1
+  Type: {fileID: 11400000, guid: 2a4e459edde405b4fbdabe47db40d9bc, type: 2}

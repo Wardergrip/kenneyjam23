@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e760f0046b2d78498ce39e4b0f3b595, type: 3}
+  m_Name: SmithQuest 2
+  m_EditorClassIdentifier: 
+  ItemRequired: {fileID: 11400000, guid: 9016cbb292e3b8b43a15a05b2ee9f159, type: 2}
+  AmountRequired: 1
+  ItemRewarded: {fileID: 11400000, guid: 8e815a8a046384747a6f77f45b891ef8, type: 2}
+  AmountRewarded: 1
+  Type: {fileID: 11400000, guid: 0cb0166dc35a4ce4390b0fc2bb68fdc6, type: 2}
