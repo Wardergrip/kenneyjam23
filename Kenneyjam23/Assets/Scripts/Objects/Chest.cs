@@ -12,7 +12,11 @@ public class Chest : MonoBehaviour
 
     private void OnEnable() => Chests.Add(this);
     private void OnDisable() => Chests.Remove(this);
-
+/// <summary>
+/// Returns true if an interaction was possible (either item added to inventory or failed to add)
+/// Returns false if internal item is null --> there is no item available to give.
+/// </summary>
+/// <returns></returns>
     public bool Interact(Inventory inventory)
     {
         if (_item == null) return false;
