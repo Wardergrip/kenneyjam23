@@ -13,15 +13,23 @@ public class HealthHUD : MonoBehaviour
     private void Start()
     {
         // Subscribe to the playerchange event
-        _playerHealth.OnHealthChangedEvent.AddListener((Health health) => { UpdateHealth(health.CurrentHealth, health.MaxHealth); });
+        _playerHealth.OnHealthChangedEvent.AddListener(UpdateHealth);
 
         // Draw the initial value of the health on screen
-        UpdateHealth(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
+        UpdateHealth(_playerHealth);
     }
 
-    public void UpdateHealth(int health, int maxHealth)
+    private void OnDestroy()
     {
-        float healthPercentage = (float)health / maxHealth;
+        _playerHealth.OnHealthChangedEvent.RemoveListener(UpdateHealth);
+    }
+
+    public void UpdateHealth(Health health)
+    {
+        int curHealth = health.CurrentHealth;
+        int maxHealth = health.MaxHealth;
+
+        float healthPercentage = (float)curHealth / maxHealth;
 
         Rect parentRect = _healthBar.parent.GetComponent<RectTransform>().rect;
 
