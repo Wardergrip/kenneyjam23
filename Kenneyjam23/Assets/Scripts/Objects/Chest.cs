@@ -13,15 +13,15 @@ public class Chest : MonoBehaviour
     private void OnEnable() => Chests.Add(this);
     private void OnDisable() => Chests.Remove(this);
 
-    public void Interact(Inventory inventory)
+    public bool Interact(Inventory inventory)
     {
-        if (_item == null) return;
+        if (_item == null) return false;
 
         if (!inventory.AddItem(_item))
         {
             // Spawn a message that the player's inventory is full
             Instantiate(_failMessage, _failMessageSocket.position, Quaternion.identity, null);
-            return;
+            return false;
         }
 
         // Play the open animation
@@ -29,6 +29,8 @@ public class Chest : MonoBehaviour
 
         // Disable the chest by setting the item to null
         _item = null;
+
+        return true;
     }
 
     public void Restock(Item item)
