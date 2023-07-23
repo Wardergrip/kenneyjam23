@@ -69,7 +69,6 @@ public class SpawnManager : MonoBehaviour
         foreach (var enemy in _spawnList)
         {
             number += enemy.Rarity;
-            Debug.Log(number);
             if (number > randomNumber)
             {
                 Instantiate(enemy.Mob, position, Quaternion.identity);

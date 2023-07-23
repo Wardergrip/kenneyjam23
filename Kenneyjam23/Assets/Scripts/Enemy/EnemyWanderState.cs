@@ -44,7 +44,7 @@ public class EnemyWanderState : IEnemyState
 
     private Vector3 RandomNavSphere(Vector3 origin, float distance)
     {
-        const int maxTries = 50;
+        const int maxTries = 5;
         for (int i = 0; i < maxTries; ++i)
         {
             Vector3 randDirection = Random.insideUnitSphere * distance;
