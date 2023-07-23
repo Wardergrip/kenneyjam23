@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     [Header("Visuals")]
-    [SerializeField] private Transform _gunOutput;
+    [SerializeField] private List<Transform> _gunOutputs = new List<Transform>();
 
     [Header("Gun Properties")]
     [SerializeField, Range(1, 100)] private int _maxAmmo;
@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     private float _shootTimer = 0;
     [SerializeField] private bool _automaticReload = true;
     private bool _isReloading = false;
-    private bool _justShot = false;
+    //private bool _justShot = false;
 
     [Header("Resources")]
     public GameObject _projectilePrefab;
@@ -56,7 +56,7 @@ public class Gun : MonoBehaviour
     // Functionality
     private void Awake()
     {
-        if (_gunOutput == null)
+        if (_gunOutputs == null)
         {
             Debug.Log("gunOutput not assigned");
         }
@@ -120,10 +120,15 @@ public class Gun : MonoBehaviour
         }
 
         _shootTimer = TimeBetweenShots;
-        Instantiate(_projectilePrefab, _gunOutput.position, _gunOutput.rotation);
 
-        --_currentAmmo;
-        ShotFiredEvent?.Invoke(_gunOutput);
+        foreach(Transform output in _gunOutputs)
+        {
+            Instantiate(_projectilePrefab, output.position, output.rotation);
+
+            --_currentAmmo;
+        }
+
+        ShotFiredEvent?.Invoke(_gunOutputs[0]);
 
         return true;
     }
