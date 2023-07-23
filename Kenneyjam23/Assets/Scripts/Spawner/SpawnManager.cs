@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -71,7 +73,9 @@ public class SpawnManager : MonoBehaviour
             number += enemy.Rarity;
             if (number > randomNumber)
             {
-                Instantiate(enemy.Mob, position, Quaternion.identity);
+                var go = Instantiate(enemy.Mob, position, Quaternion.identity);
+                go.GetComponent<Health>().SetHealth(enemy.Health + Mathf.FloorToInt(enemy.IncreaseHealth * _gameTime));
+                
                 break;
             }
         }
@@ -88,4 +92,10 @@ struct Enemy
     /// Between 0 - 100
     /// </summary>
     public int Rarity;
+
+    public int Health;
+    /// <summary>
+    /// Spawn health increase every second
+    /// </summary>
+    public float IncreaseHealth;
 }

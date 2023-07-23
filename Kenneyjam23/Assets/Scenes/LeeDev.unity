@@ -1847,6 +1847,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1344194424440791154, guid: 211d3f19887bed24db2d125a80923216,
+        type: 3}
+      propertyPath: _spawnList.Array.data[0].Health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344194424440791154, guid: 211d3f19887bed24db2d125a80923216,
+        type: 3}
+      propertyPath: _spawnList.Array.data[0].Rarity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344194424440791154, guid: 211d3f19887bed24db2d125a80923216,
+        type: 3}
+      propertyPath: _spawnList.Array.data[0].IncreaseHealth
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1560167811759659258, guid: 211d3f19887bed24db2d125a80923216,
         type: 3}
       propertyPath: m_RootOrder
