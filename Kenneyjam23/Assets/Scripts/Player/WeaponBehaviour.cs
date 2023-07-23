@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class WeaponBehaviour : MonoBehaviour
@@ -20,6 +21,8 @@ public class WeaponBehaviour : MonoBehaviour
 
     private bool _canShoot = false;
     private bool _isPistol = false;
+
+    public UnityEvent WeaponSwap;
 
     private void Start()
     {
@@ -70,6 +73,8 @@ public class WeaponBehaviour : MonoBehaviour
         }
 
         PlaceWeapon();
+
+        WeaponSwap.Invoke();
     }
 
     private void SwitchPosition(bool equipped)
