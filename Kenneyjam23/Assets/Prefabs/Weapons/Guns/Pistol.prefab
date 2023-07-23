@@ -63,7 +63,7 @@ Transform:
   - {fileID: 1780208929092876176}
   - {fileID: 3019841153969037469}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1093731239512578939
 MonoBehaviour:
@@ -78,9 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunOutput: {fileID: 3019841153969037469}
-  _maxAmmo: 15
+  _maxAmmo: 6
   _reloadTime: 1.5
-  _rateOfFire: 5
+  _rateOfFire: 3
   _automaticReload: 1
   _projectilePrefab: {fileID: 1022719985105559634, guid: 950905874346043478db9cac8b5248e0,
     type: 3}

@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     private float _shootTimer = 0;
     [SerializeField] private bool _automaticReload = true;
     private bool _isReloading = false;
-    private bool _justShot = false;
+    //private bool _justShot = false;
 
     [Header("Resources")]
     public GameObject _projectilePrefab;

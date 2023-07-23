@@ -24,11 +24,12 @@ public class WeaponBehaviour : MonoBehaviour
 
         _currentGun = _pistol.GetComponent<Gun>();
 
-        PlaceWeapon(false);
+        PlaceWeapon();
     }
 
     private void LateUpdate()
     {
+        //the gun is socketed to the hand of the animation but swirls, this assures the gun always aims forward
         if (_canShoot)
         {
             _handPistol.transform.rotation = transform.rotation;
@@ -45,29 +46,29 @@ public class WeaponBehaviour : MonoBehaviour
 
     private void SwitchPosition(bool equipped)
     {
-        PlaceWeapon(equipped);
-
         _canShoot = equipped;
+
+        PlaceWeapon();
     }
 
-    private void PlaceWeapon(bool equipped)
+    private void PlaceWeapon()
     {
-        if (equipped)
+        if (_canShoot)
         {
-            _pistol.transform.parent = _handPistol;
+            AttachWeapon(_handPistol);
 
-            _pistol.transform.localPosition = Vector3.zero;
-            _pistol.transform.localRotation = Quaternion.identity;
-            
         }
         else
         {
-            _pistol.transform.parent = _hipPistol;
-        
-            Debug.Log("resetted to hip");
-
-            _pistol.transform.localPosition = Vector3.zero;
-            _pistol.transform.localRotation = Quaternion.identity;
+            AttachWeapon(_hipPistol);
         }
+    }
+
+    private void AttachWeapon(Transform socket)
+    {
+        _pistol.transform.parent = socket;
+
+        _pistol.transform.localPosition = Vector3.zero;
+        _pistol.transform.localRotation = Quaternion.identity;
     }
 }

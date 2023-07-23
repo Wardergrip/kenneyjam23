@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
 
     private float _gravity = 0;
 
-    [SerializeField] private float _rotationRadius = 1.5f;
     [SerializeField] private float _rotationSpeed = 5f;
 
     [SerializeField] private float _cameraRotSpeed = 10f;
@@ -87,7 +86,6 @@ public class PlayerController : MonoBehaviour
         if(context.performed || context.canceled)
         {
             WeaponChange.Invoke(_hasGun);
-            Debug.Log(_hasGun);
         }
     }
 
