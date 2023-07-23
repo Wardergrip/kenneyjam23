@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
         }
 
         // Don't add an item if the request amount is above the maxstacksize
-        if (amount >= item.MaxStackSize) return false;
+        if (amount > item.MaxStackSize) return false;
 
         // Don't add an item if the inventory is full
         if (IsFull)
