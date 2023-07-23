@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1344194424440791154
 MonoBehaviour:
@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36bdf984a523544cb00ad10f47f9344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timer: {fileID: 0}
   _spawnList:
   - Mob: {fileID: 3088608832185069049, guid: 7502db213e9df1b488a43612a3f9930f, type: 3}
     Rarity: 100
+    Health: 10
+    IncreaseHealth: 0.1
   _spawnFreq: 10
   _minSpawnFreq: 10
   _increaseRatio: 0.1

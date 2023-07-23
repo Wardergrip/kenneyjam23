@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private GameTimer _timer;
+
     /// <summary>
     /// Rarity should be 100 in total
     /// </summary>
@@ -13,10 +15,10 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float _spawnFreq = 10f;
     [SerializeField] private float _minSpawnFreq = 10f;
     [SerializeField] private float _increaseRatio = 0.1f;
+    [SerializeField] private int _spawnAmount = 3;
 
     private SpawnPoint[] _spawnPoints;
 
-    private float _gameTime = 0f;
     private float _currentSpawnFreq;
     private float _spawnCooldown;
 
@@ -47,8 +49,10 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        _gameTime += Time.deltaTime;
-        _spawnCooldown -= Time.deltaTime;
+        if (!GameTimer.IsPaused)
+        {
+            _spawnCooldown -= Time.deltaTime;
+        }
 
         if (_spawnCooldown <= 0f)
         {
@@ -65,23 +69,25 @@ public class SpawnManager : MonoBehaviour
         }
         _spawnCooldown = _currentSpawnFreq;
 
-        var position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
-        int randomNumber = Random.Range(0, 100);
-        int number = 0;
-        foreach (var enemy in _spawnList)
+        for (int i = 0; i < _spawnAmount; ++i)
         {
-            number += enemy.Rarity;
-            if (number > randomNumber)
+            var position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
+            int randomNumber = Random.Range(0, 100);
+            int number = 0;
+            foreach (var enemy in _spawnList)
             {
-                var go = Instantiate(enemy.Mob, position, Quaternion.identity);
+                number += enemy.Rarity;
+                if (number > randomNumber)
+                {
+                    var go = Instantiate(enemy.Mob, position, Quaternion.identity);
 
-                //Increase health overtime
-                go.GetComponent<Health>().SetHealth(enemy.Health + Mathf.FloorToInt(enemy.IncreaseHealth * _gameTime));
+                    //Increase health overtime
+                    go.GetComponent<Health>().SetHealth(enemy.Health + Mathf.FloorToInt(enemy.IncreaseHealth * _timer.TotalTime));
 
-                break;
+                    break;
+                }
             }
         }
-
     }
 }
 
