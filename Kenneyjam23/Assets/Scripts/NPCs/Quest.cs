@@ -48,13 +48,13 @@ public class Quest : ScriptableObject
         Inventory inventory = GetInventory();
         if (inventory == null)
         {
-            CloseDialog(CollectRewardsFailMsg);
+            CloseDialog(CompleteQuestFailMsg);
 
             return false;
         }
 
         bool isSuccess = inventory.CheckForItem(ItemRequired, AmountRequired);
-        if (!isSuccess) CloseDialog(CollectRewardsFailMsg);
+        if (!isSuccess) CloseDialog(CompleteQuestFailMsg);
 
         return isSuccess;
     }

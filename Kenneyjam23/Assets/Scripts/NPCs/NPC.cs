@@ -34,8 +34,6 @@ public class NPC : MonoBehaviour
 
             _dialog.SetChoices(choices);
         }
-
-        Invoke(nameof(Interact), 1.0f);
     }
 
     public void Interact()
@@ -54,18 +52,22 @@ public class NPC : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if the player entered the trigger
-        if (true) // TODO: Implement actual check
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            //...
+            Interact();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Check if the player exited the trigger
-        if (true) // TODO: Implement actual check
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            //...
+            // Get dialog handler
+            DialogHandler dialogHandler = FindObjectOfType<DialogHandler>();
+
+            // Close dialog
+            dialogHandler.CloseDialog();
         }
     }
 }
