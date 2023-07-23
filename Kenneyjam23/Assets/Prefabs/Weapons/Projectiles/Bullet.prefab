@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2.5
-  _damage: 8
+  _damage: 7
   OnSpawnEvent:
     m_PersistentCalls:
       m_Calls: []
