@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private GameTimer _timer;
+
     /// <summary>
     /// Rarity should be 100 in total
     /// </summary>
@@ -16,7 +18,6 @@ public class SpawnManager : MonoBehaviour
 
     private SpawnPoint[] _spawnPoints;
 
-    private float _gameTime = 0f;
     private float _currentSpawnFreq;
     private float _spawnCooldown;
 
@@ -47,8 +48,10 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        _gameTime += Time.deltaTime;
-        _spawnCooldown -= Time.deltaTime;
+        if (!GameTimer.IsPaused)
+        {
+            _spawnCooldown -= Time.deltaTime;
+        }
 
         if (_spawnCooldown <= 0f)
         {
@@ -76,7 +79,7 @@ public class SpawnManager : MonoBehaviour
                 var go = Instantiate(enemy.Mob, position, Quaternion.identity);
 
                 //Increase health overtime
-                go.GetComponent<Health>().SetHealth(enemy.Health + Mathf.FloorToInt(enemy.IncreaseHealth * _gameTime));
+                go.GetComponent<Health>().SetHealth(enemy.Health + Mathf.FloorToInt(enemy.IncreaseHealth * _timer.TotalTime));
 
                 break;
             }

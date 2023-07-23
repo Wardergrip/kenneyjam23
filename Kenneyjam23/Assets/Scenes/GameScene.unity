@@ -528,14 +528,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1344194424440791154, guid: 211d3f19887bed24db2d125a80923216,
         type: 3}
-      propertyPath: _spawnList.Array.data[0].Health
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1344194424440791154, guid: 211d3f19887bed24db2d125a80923216,
-        type: 3}
-      propertyPath: _spawnList.Array.data[0].IncreaseHealth
-      value: 0.1
-      objectReference: {fileID: 0}
+      propertyPath: _timer
+      value: 
+      objectReference: {fileID: 1812835285}
     - target: {fileID: 1560167811759659258, guid: 211d3f19887bed24db2d125a80923216,
         type: 3}
       propertyPath: m_RootOrder
@@ -1639,6 +1634,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1595603538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1812835285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6312038003730463340, guid: 5dee64f25659c09438c2988e3c2ef1a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1190881789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fe79d62aa91e841b9b81a22e29781a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1923959903
 PrefabInstance:
   m_ObjectHideFlags: 0
