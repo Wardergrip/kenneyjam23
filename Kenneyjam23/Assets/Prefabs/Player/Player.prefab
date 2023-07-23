@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2267390922975057108}
   - component: {fileID: 3434998750341955354}
   - component: {fileID: 9009339477483609476}
+  - component: {fileID: 2571548060570106841}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -42,7 +43,7 @@ Transform:
   - {fileID: 2361752821251728707}
   - {fileID: 7832644635126721220}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7017007660891801658
 MonoBehaviour:
@@ -271,7 +272,19 @@ MonoBehaviour:
       m_Calls: []
   OnDeathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2571548060570106841}
+        m_TargetAssemblyTypeName: GoToDeathScreen, Assembly-CSharp
+        m_MethodName: GoToDeathScreenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &3434998750341955354
 AudioSource:
   m_ObjectHideFlags: 0
@@ -378,6 +391,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 774b8cef8c17d51468ab83afd021022a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2571548060570106841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168054011135161109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a74fd6208105542a0ca4d47bcaed80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2598854754442809658
