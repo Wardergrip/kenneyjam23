@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8977233265282149622}
   - component: {fileID: 4665674112351968562}
   - component: {fileID: 4404433084102340865}
+  - component: {fileID: 6976306118046023049}
+  - component: {fileID: 2267390922975057108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -36,7 +38,7 @@ Transform:
   - {fileID: 8559380643929918838}
   - {fileID: 2361752821251728707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7017007660891801658
 MonoBehaviour:
@@ -193,6 +195,47 @@ MonoBehaviour:
   _hipPistol: {fileID: 8559380643929918838}
   _handPistol: {fileID: 7248786905726427892}
   _pistol: {fileID: 6670830521587480224}
+--- !u!114 &6976306118046023049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168054011135161109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca14bbf15a54934092d7d68c3537229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountOfItems: 5
+  InventoryUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2267390922975057108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168054011135161109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3d8d34ebf16de4ab8e4194e7ed42df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  OnHealthChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamageReceivedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealReceivedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2598854754442809658
 GameObject:
   m_ObjectHideFlags: 0
