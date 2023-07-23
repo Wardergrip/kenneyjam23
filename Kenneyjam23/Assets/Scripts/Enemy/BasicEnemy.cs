@@ -7,12 +7,12 @@ using UnityEngine.AI;
 
 public class BasicEnemy : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
     [SerializeField] private float _visionRange = 7.5f;
     [SerializeField] private float _damageRange = 3f;
     [SerializeField] private GameObject _damageObject;
     [SerializeField] private float _maxAttackCooldown = 1f;
     private NavMeshAgent _navMeshAgent;
+    private Transform _target;
 
     private IEnemyState _state;
     private float _attackCooldown;
@@ -26,6 +26,11 @@ public class BasicEnemy : MonoBehaviour
         {
             Debug.LogError($"Navmesh not found on object: {gameObject.name}");
         }
+    }
+
+    private void Start()
+    {
+        _target = PlayerController.Instance.transform;
 
         _enemyWanderState = new EnemyWanderState();
         _enemyWanderState.EnterState(_navMeshAgent);
