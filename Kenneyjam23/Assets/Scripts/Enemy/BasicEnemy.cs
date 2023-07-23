@@ -11,6 +11,8 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] private float _damageRange = 3f;
     [SerializeField] private GameObject _damageObject;
     [SerializeField] private float _maxAttackCooldown = 1f;
+    [SerializeField] private Animator _animator;
+
     private NavMeshAgent _navMeshAgent;
     private Transform _target;
 
@@ -69,6 +71,8 @@ public class BasicEnemy : MonoBehaviour
             _attackCooldown = _maxAttackCooldown;
             Instantiate(_damageObject, transform.position, Quaternion.identity);
         }
+
+        _animator.SetBool("IsMoving", _navMeshAgent.velocity.magnitude > 0.5f);
     }
 
     public void Died()
