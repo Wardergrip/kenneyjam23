@@ -858,6 +858,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297928757485440117, guid: 8ca969bd2e7dd304a8fe3e749b9dae35,
+        type: 3}
+      propertyPath: _dialog
+      value: 
+      objectReference: {fileID: 11400000, guid: ffa9c371eba83dc40b87e4ea2088234a,
+        type: 2}
+    - target: {fileID: 5019347550515436072, guid: 8ca969bd2e7dd304a8fe3e749b9dae35,
+        type: 3}
+      propertyPath: _exitDialog
+      value: 
+      objectReference: {fileID: 11400000, guid: 39bf077566a19c5488a70f3e1c974b6a,
+        type: 2}
+    - target: {fileID: 5019347550515436072, guid: 8ca969bd2e7dd304a8fe3e749b9dae35,
+        type: 3}
+      propertyPath: _interactDialog
+      value: 
+      objectReference: {fileID: 11400000, guid: df36cbbbf768bc34cbe06bce6c9ae43c,
+        type: 2}
     - target: {fileID: 6989611023613116492, guid: 8ca969bd2e7dd304a8fe3e749b9dae35,
         type: 3}
       propertyPath: m_Name

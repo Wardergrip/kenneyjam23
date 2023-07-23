@@ -5,11 +5,18 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [SerializeField] private NPCType _type = null;
-    public NPCType GetNPCType() { return _type; }
+    public NPCType Type
+    {
+        get { return _type; }
+    }
 
     [SerializeField] private QuestManager _questManager = null;
-    public QuestManager GetQuestManager() { return _questManager; }
+    public QuestManager QuestManager
+    {
+        get { return _questManager; }
+    }
 
+    [Header("Leave choices empty! Choices are set through code")]
     [SerializeField] private DialogBlock _dialog = null;
 
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer = null;
@@ -20,7 +27,15 @@ public class NPC : MonoBehaviour
         // Set NPC material based on type
         _skinnedMeshRenderer.material = _type.SkinMaterial;
 
-        Invoke(nameof(Interact), 3.0f);
+        // Set interact and exit dialogs as choices for NPC dialog
+        if (_dialog != null)
+        {
+            List<DialogBlock> choices = new List<DialogBlock>() { QuestManager.InteractDialog, QuestManager.ExitDialog };
+
+            _dialog.SetChoices(choices);
+        }
+
+        Invoke(nameof(Interact), 1.0f);
     }
 
     public void Interact()

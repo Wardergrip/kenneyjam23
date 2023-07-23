@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &944315052226889531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6164154207820012866}
+  m_Layer: 0
+  m_Name: FailMsgSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6164154207820012866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944315052226889531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7484075027199012846}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2420331927353129991
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +95,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4521876166961715325}
+  - {fileID: 6164154207820012866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: {fileID: 11400000, guid: e47ca25e7cdfe2f4889a8e5757cb9b85, type: 2}
   _questManager: {fileID: 5019347550515436072}
-  _dialog: {fileID: 11400000, guid: 460407ad44cf19849bfcdbe00a4e0b40, type: 2}
+  _dialog: {fileID: 0}
   _skinnedMeshRenderer: {fileID: 4260354395687332237}
 --- !u!114 &5019347550515436072
 MonoBehaviour:
@@ -95,6 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafc685753016b74fa2c4bdc7e898705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactDialog: {fileID: 0}
+  _exitDialog: {fileID: 0}
+  _completeQuestFailMsg: {fileID: 8101570996326331508, guid: cf09e01f1f23b8a44b196fc98bd977b6,
+    type: 3}
+  _collectRewardsFailMsg: {fileID: 8101570996326331508, guid: 91be3daf0c9c74b438b0257fb8670111,
+    type: 3}
+  _failMessageSocket: {fileID: 6164154207820012866}
 --- !u!65 &608612642230522345
 BoxCollider:
   m_ObjectHideFlags: 0

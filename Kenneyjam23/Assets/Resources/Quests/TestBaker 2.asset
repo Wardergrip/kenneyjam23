@@ -17,3 +17,7 @@ MonoBehaviour:
   ItemRewarded: {fileID: 11400000, guid: 5968687d6bfa78c44966360e656aa80b, type: 2}
   AmountRewarded: 1
   Type: {fileID: 11400000, guid: e47ca25e7cdfe2f4889a8e5757cb9b85, type: 2}
+  CompleteQuestFailMsg: {fileID: 8101570996326331508, guid: cf09e01f1f23b8a44b196fc98bd977b6,
+    type: 3}
+  CollectRewardsFailMsg: {fileID: 8101570996326331508, guid: 589efa44776d2f64ca88192aa0931a6f,
+    type: 3}

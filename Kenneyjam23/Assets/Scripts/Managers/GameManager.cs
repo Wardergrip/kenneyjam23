@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             for (int npcIdx = 0; npcIdx < npcs.Count; ++npcIdx)
             {
                 // Get all quests with a matching NPC type
-                List<Quest> possibleQuests = _quests.Where(q => q.Type.Equals(npcs[npcIdx].GetNPCType())).ToList();
+                List<Quest> possibleQuests = _quests.Where(q => q.Type.Equals(npcs[npcIdx].Type) || q.Type == null).ToList();
 
                 // Get all quests that require items which are available
                 possibleQuests = possibleQuests.Where(q => _availableItems.Contains(q.ItemRequired)).ToList();
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         // Initialize the quest managers
         for (int npcIdx = 0; npcIdx < npcs.Count; ++npcIdx)
         {
-            npcs[npcIdx].GetQuestManager().Initialize(npcQuests[npcIdx]);
+            npcs[npcIdx].QuestManager.Initialize(npcQuests[npcIdx]);
         }
     }
 }

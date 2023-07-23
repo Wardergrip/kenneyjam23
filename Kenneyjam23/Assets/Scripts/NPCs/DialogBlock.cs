@@ -16,5 +16,14 @@ public class DialogBlock : ScriptableObject
     public UnityEvent OnActivate = new UnityEvent();
 
     [Header("Respond options, if empty it will close the dialog")]
-    public List<DialogBlock> Choices;
+    public List<DialogBlock> Choices = new List<DialogBlock>();
+
+    public void SetChoices(List<DialogBlock> choices)
+    {
+        // Remove the existing choices
+        Choices.Clear();
+
+        // Set the given choices
+        Choices.AddRange(choices);
+    }
 }
