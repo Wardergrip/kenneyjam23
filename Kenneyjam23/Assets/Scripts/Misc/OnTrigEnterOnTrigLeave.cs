@@ -12,12 +12,16 @@ public class OnTrigEnterOnTrigLeave : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //OnEnterEvent?.Invoke();
+        var player = other.GetComponent<PlayerController>();
+        if (player == null) return;
         GameTimer.Pause();
     }
 
     private void OnTriggerExit(Collider other)
     {
         //OnExitEvent?.Invoke();
+        var player = other.GetComponent<PlayerController>();
+        if (player == null) return;
         GameTimer.Unpause();
     }
 }
