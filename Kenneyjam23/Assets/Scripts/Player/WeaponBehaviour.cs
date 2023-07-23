@@ -62,6 +62,8 @@ public class WeaponBehaviour : MonoBehaviour
     {
         float value = context.ReadValue<float>();
 
+        bool isPrevPistol = _isPistol;
+
         if (!context.performed) return;
 
         if(value == -1)
@@ -76,6 +78,8 @@ public class WeaponBehaviour : MonoBehaviour
         }
 
         PlaceWeapon();
+
+        if (isPrevPistol == _isPistol) return;
 
         WeaponSwap.Invoke();
     }
