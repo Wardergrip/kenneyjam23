@@ -21,13 +21,18 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        _offset = new Vector3(0, _height, _radius);
-
         transform.position = _playerTransform.position + _offset;
 
         transform.localEulerAngles = new Vector3(_rotation, 0, 0);
 
         _playerController = PlayerController.Instance;
+
+        float angleRad = Mathf.Deg2Rad * (_playerController.CameraRotation + 180);
+
+        float offsetX = Mathf.Sin(angleRad) * _radius;
+        float offsetZ = Mathf.Cos(angleRad) * _radius;
+
+        _offset = new Vector3(offsetX, _height, offsetZ);
     }
 
     void LateUpdate()
@@ -50,13 +55,12 @@ public class CameraFollow : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed * Time.deltaTime);
 
         Vector3 directionToPlayer = _playerTransform.position - transform.position;
+        directionToPlayer.y = 0.0f;
 
-        float targetYRot = Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.LookRotation(directionToPlayer.normalized, Vector3.up) * Quaternion.Euler(_rotation, 0.0f, 0.0f);
 
-        float yRot = Mathf.LerpAngle(transform.localEulerAngles.y, targetYRot, _smoothSpeed * Time.fixedDeltaTime);
+        transform.localRotation = rotation;
 
-        transform.localEulerAngles = new Vector3(_rotation, yRot, 0);
-        
         transform.position = smoothedPosition;
     }
 }

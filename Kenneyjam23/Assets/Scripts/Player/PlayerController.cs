@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -23,9 +18,12 @@ public class PlayerController : MonoBehaviour
     private float _gravity = 0;
 
     [SerializeField] private float _rotationRadius = 1.5f;
-    [SerializeField] private float _rotationSpeed = 5f;
+    [SerializeField] private float _rotationSpeed = 3f;
+    [SerializeField] private float _rotationLerpSpeed = 10f;
 
     [SerializeField] private float _cameraRotSpeed = 10f;
+
+    [SerializeField] private float _mouseRange = 20.0f;
 
     private float _cameraRotation = 0;
     private bool _canRotate = false;
@@ -60,24 +58,32 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 movementDir = Camera.main.transform.TransformDirection(_inputVec);
-        movementDir = new Vector3(movementDir.x, 0f, movementDir.z).normalized;
+        Vector3 movementDir = Camera.main.transform.forward;
+        movementDir.y = 0.0f;
+        movementDir.Normalize();
 
-        Vector3 movementVec = new Vector3(movementDir.x * _speed, _gravity, movementDir.z * _speed);
+        Vector3 movementVec = movementDir * _speed * _inputVec.y + Vector3.up * _gravity;
 
         _cc?.Move(movementVec * Time.deltaTime);
 
         RotatePlayer();
 
+        Debug.Log(_cameraRotDir);
         RotateCamera();
 
-        _animator?.SetBool("IsMoving", _inputVec != Vector2.zero);
+        _animator?.SetBool("IsMoving", _inputVec.y > 0);
+        _animator?.SetBool("IsMovingReverse", _inputVec.y < 0);
         _animator?.SetBool("HasGun", _hasGun);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        _inputVec = context.ReadValue<Vector2>();
+        Vector2 wasd = context.ReadValue<Vector2>();
+
+        _inputVec = Vector2.up * wasd.y;
+
+        _cameraRotDir = wasd.x * _rotationSpeed;
+        _canRotate = Mathf.Abs(_cameraRotDir) > float.Epsilon;
     }
 
     public void OnShift(InputAction.CallbackContext context)
@@ -87,38 +93,50 @@ public class PlayerController : MonoBehaviour
         if(context.performed || context.canceled)
         {
             WeaponChange.Invoke(_hasGun);
-            Debug.Log(_hasGun);
         }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
     {
-        _cameraRotDir = context.ReadValue<float>();
+        //_cameraRotDir = context.ReadValue<float>();
 
         _canRotate = context.performed;
     }
 
     private void RotatePlayer()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        RaycastHit hit;
+        Vector3 direction = Camera.main.transform.forward;
+        direction.y = 0.0f;
 
-        if (Physics.Raycast(ray, out hit) == false) return;
-
-        Vector3 worldMousePos = hit.point;
-
-        Vector2 dir = new Vector2(worldMousePos.x - transform.position.x, worldMousePos.z - transform.position.z);
-
-        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-
-        Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction.normalized, Vector3.up), _rotationLerpSpeed * Time.deltaTime);
     }
 
     private void RotateCamera()
     {
-        if(_canRotate)
+        //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        //RaycastHit hit;
+
+        //_canRotate = false;
+        //_cameraRotDir = 0;
+
+        //if (Physics.Raycast(ray, out hit))
+        //{
+        //    Vector3 worldMousePos = hit.point;
+
+        //    Vector3 dir = new Vector3(worldMousePos.x - transform.position.x, 0, worldMousePos.z - transform.position.z);
+
+        //    float angle = Vector3.SignedAngle(transform.forward, dir, Vector3.up);
+
+        //    Debug.Log(angle);
+
+        //    if (Mathf.Abs(angle) > _mouseRange)
+        //    {
+        //        _cameraRotDir = angle / Mathf.Abs(angle);
+        //        _canRotate = true;
+        //    }
+        //}
+
+        if (_canRotate)
         {
             _cameraRotation += _cameraRotDir * Time.deltaTime * _cameraRotSpeed;
 
