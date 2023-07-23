@@ -63,7 +63,7 @@ Transform:
   - {fileID: 1780208929092876176}
   - {fileID: 3019841153969037469}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1093731239512578939
 MonoBehaviour:
@@ -77,7 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66518456009dff44f9de899b0fe247a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunOutput: {fileID: 3019841153969037469}
+  _gunOutputs:
+  - {fileID: 3019841153969037469}
   _maxAmmo: 6
   _reloadTime: 1.5
   _rateOfFire: 3

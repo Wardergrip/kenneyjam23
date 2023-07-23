@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        _offset = new Vector3(0, _height, _radius);
+        _offset = new Vector3(0, _height, -_radius);
 
         transform.position = _playerTransform.position + _offset;
 
