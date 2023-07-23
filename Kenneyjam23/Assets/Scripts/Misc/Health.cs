@@ -65,4 +65,10 @@ public class Health : MonoBehaviour
         OnHealReceivedEvent?.Invoke(this);
         return true;
     }
+
+    public void SetHealth(int amount)
+    {
+        _currentHealth = amount;
+        _maxHealth = amount;
+    }
 }
