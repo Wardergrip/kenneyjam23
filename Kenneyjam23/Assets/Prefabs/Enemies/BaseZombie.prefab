@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7545204022091295194}
   - component: {fileID: 2809275014747699177}
   - component: {fileID: 6067369211760137922}
+  - component: {fileID: 851680220535609471}
   m_Layer: 0
   m_Name: BaseZombie
   m_TagString: Untagged
@@ -145,7 +146,19 @@ MonoBehaviour:
       m_Calls: []
   OnDamageReceivedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 851680220535609471}
+        m_TargetAssemblyTypeName: MaterialFlicker, Assembly-CSharp
+        m_MethodName: Flicker
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealReceivedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -164,6 +177,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &851680220535609471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088608832185069049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d05e2144a573142b547ae00b3300cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skinnedMeshRenderer: {fileID: 1353444096483862975}
+  _matToFlickerTo: {fileID: 2100000, guid: efa758720ba8a6d4da4093f209f68b03, type: 2}
 --- !u!1001 &8162010773033593252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,6 +273,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 198136365773379821}
   m_SourcePrefab: {fileID: 100100000, guid: beb5c0358cac2aa40b84b67b1421fd22, type: 3}
+--- !u!137 &1353444096483862975 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2049929814205202405, guid: beb5c0358cac2aa40b84b67b1421fd22,
+    type: 3}
+  m_PrefabInstance: {fileID: 8162010773033593252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4270744937401136818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5332809968238436118, guid: beb5c0358cac2aa40b84b67b1421fd22,
