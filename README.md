@@ -14,7 +14,7 @@ The goal of the game is to survive for as long as possible. Game time is paused 
 - Reï Messely (Wardergrip)
   - Dialog & gameworld
 - Sander De Keukelaere (AtlantiaKing)
-  - Music & inventory
+  - Inventory, UI and music
 - Twannes Claes (Twanny)
   - Playercontroller & weapons
 - Maïté Lejeune
