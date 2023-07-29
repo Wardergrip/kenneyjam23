@@ -68,4 +68,9 @@ public class GameTimer : MonoBehaviour
                 _seconds.ToString()
                 );
     }
+
+    private void OnDestroy()
+    {
+        EndScoreDisplayer.TimeText = $"{Hours}h {Minutes}m {Seconds}s";
+    }
 }
