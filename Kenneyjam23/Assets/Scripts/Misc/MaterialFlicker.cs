@@ -6,7 +6,6 @@ public class MaterialFlicker : MonoBehaviour
 {
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
     [SerializeField] private Material _matToFlickerTo;
-    //private string _colorPropertyName = "_base_color";
 
     public void Flicker(float length)
     {
