@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField, Min(1)] private int _questsPerNPC = 1;
 
     [SerializeField] private List<Item> _chestItems = new List<Item>();
+    public List<Item> ChestItems { get { return _chestItems; } }
 
     private List<Item> _availableItems = new List<Item>();
 
