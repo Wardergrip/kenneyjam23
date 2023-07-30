@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 7139239835814387270}
   - component: {fileID: 4793658806508074857}
   - component: {fileID: 31799542812318319}
+  - component: {fileID: 1855794193068210309}
   m_Layer: 0
   m_Name: RefillTimer
   m_TagString: Untagged
@@ -316,6 +317,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1855794193068210309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2787758127158028819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298d8bc6f36ac4548a571a0c88c6e3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3381444817432635265
 GameObject:
   m_ObjectHideFlags: 0
