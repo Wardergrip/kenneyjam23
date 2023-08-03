@@ -58,6 +58,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1346273290171401468}
+  _aimableMask:
+    serializedVersion: 2
+    m_Bits: 64
   _rotationSpeed: 10
   _cameraRotSpeed: 100
   WeaponChange:

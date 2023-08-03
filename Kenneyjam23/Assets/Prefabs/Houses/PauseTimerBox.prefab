@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5298632555713687937}
   - component: {fileID: 389860982633530073}
   - component: {fileID: 2983888952421989522}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PauseTimerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
