@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         // Initialize the quest managers
         for (int npcIdx = 0; npcIdx < npcs.Count; ++npcIdx)
         {
-            npcs[npcIdx].QuestManager.Initialize(npcQuests[npcIdx]);
+            npcs[npcIdx].InitializeQuests(npcQuests[npcIdx]);
         }
     }
 }
