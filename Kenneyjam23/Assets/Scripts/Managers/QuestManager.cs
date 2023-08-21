@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour
     public DialogBlock InteractDialog
     {
         get { return _interactDialog; }
+        private set { _interactDialog = value; }
     }
     [SerializeField] private DialogBlock _exitDialog = null;
     public DialogBlock ExitDialog
@@ -27,6 +28,9 @@ public class QuestManager : MonoBehaviour
 
     public void Initialize(List<Quest> quests)
     {
+        // Create a clone of the interact dialog to avoid global quest progression
+        InteractDialog = Instantiate(InteractDialog);
+
         // Set quests
         _quests = quests;
 

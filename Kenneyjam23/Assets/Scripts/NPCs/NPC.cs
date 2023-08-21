@@ -27,9 +27,21 @@ public class NPC : MonoBehaviour
         // Set NPC material based on type
         _skinnedMeshRenderer.material = _type.SkinMaterial;
 
-        // Set interact and exit dialogs as choices for NPC dialog
         if (_dialog != null)
         {
+            // Create a clone of the dialog to avoid global quest progression
+            _dialog = Instantiate(_dialog);
+        }
+    }
+
+    public void InitializeQuests(List<Quest> quests)
+    {
+        if (_dialog != null)
+        {
+            // Initialize the quest manager
+            QuestManager.Initialize(quests);
+
+            // Set interact and exit dialogs as choices for NPC dialog
             List<DialogBlock> choices = new List<DialogBlock>() { QuestManager.InteractDialog, QuestManager.ExitDialog };
 
             _dialog.SetChoices(choices);
