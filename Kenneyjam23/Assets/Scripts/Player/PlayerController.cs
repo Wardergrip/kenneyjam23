@@ -106,7 +106,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 worldMousePos = hit.point;
 
-        //Debug.Log(hit.transform.name);
 
         Vector2 dir = new Vector2(worldMousePos.x - transform.position.x, worldMousePos.z - transform.position.z);
 
