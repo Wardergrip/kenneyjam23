@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _animator = null;
 
+    [SerializeField] private LayerMask _aimableMask;
+
     private CharacterController _cc = null;
 
     private Vector2 _inputVec = Vector2.zero;
@@ -103,6 +105,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit) == false) return;
 
         Vector3 worldMousePos = hit.point;
+
 
         Vector2 dir = new Vector2(worldMousePos.x - transform.position.x, worldMousePos.z - transform.position.z);
 
